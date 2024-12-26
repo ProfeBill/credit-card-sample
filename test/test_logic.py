@@ -12,15 +12,15 @@ class Creditcardtest(unittest.TestCase):
         plazos = 36
 
         # resultado esperado
-        resultado_esperado_compra = 9297.959116
+        resultado_esperado_cuota = 9297.959116
         resultado_esperado_intereses = 134726.53
         # proceso
-        resultado_compra = calculate_rate(compra, interes, plazos)
+        resultado_cuota = calculate_fee(compra, interes, plazos)
         resultado_intereses = calculate_interest(compra, interes, plazos)
 
         # verificación
 
-        self.assertEqual(round(resultado_esperado_compra, 2), round(resultado_compra, 2))
+        self.assertEqual(round(resultado_esperado_compra, 2), round(resultado_cuota, 2))
         self.assertEqual(round(resultado_esperado_intereses, 2), round(resultado_intereses, 2))
 
     def testcreditcardnormal2(self):
@@ -31,16 +31,16 @@ class Creditcardtest(unittest.TestCase):
         plazos = 24
 
         # resultado esperado
-        resultado_esperado_compra = 52377.49864
+        resultado_esperado_cuota = 52377.49864
         resultado_esperado_intereses = 407059.97
 
         # proceso
-        resultado_compra = calculate_rate(compra, interes, plazos)
+        resultado_cuota = calculate_fee(compra, interes, plazos)
         resultado_intereses = calculate_interest(compra, interes, plazos)
 
         # verificación
 
-        self.assertEqual(round(resultado_esperado_compra, 2), round(resultado_compra, 2))
+        self.assertEqual(round(resultado_esperado_cuota, 2), round(resultado_cuota, 2))
         self.assertEqual(round(resultado_esperado_intereses, 2), round(resultado_intereses, 2))
 
     # Casos Excepcionales    
@@ -53,16 +53,16 @@ class Creditcardtest(unittest.TestCase):
         plazos = 1
 
         # resultado esperado
-        resultado_esperado_compra = 90000
+        resultado_esperado_cuota = 90000
         resultado_esperado_intereses = 0
 
         # proceso
-        resultado_compra = calculate_rate(compra, interes, plazos)
+        resultado_cuota = calculate_fee(compra, interes, plazos)
         resultado_intereses = calculate_interest(compra, interes, plazos)
 
         # verificación
 
-        self.assertEqual(round(resultado_esperado_compra, 2), round(resultado_compra, 2))
+        self.assertEqual(round(resultado_esperado_cuota, 2), round(resultado_cuota, 2))
         self.assertEqual(round(resultado_esperado_intereses, 2), round(resultado_intereses, 2))
 
     def testcreditcardtasacero(self):
@@ -73,16 +73,16 @@ class Creditcardtest(unittest.TestCase):
         plazos = 48
 
         # resultado esperado
-        resultado_esperado_compra = 10000
+        resultado_esperado_cuota = 10000
         resultado_esperado_intereses = 0
 
         # proceso
-        resultado_compra = calculate_rate(compra, interes, plazos)
+        resultado_cuota = calculate_fee(compra, interes, plazos)
         resultado_intereses = calculate_interest(compra, interes, plazos)
 
         # verificación
 
-        self.assertEqual(round(resultado_esperado_compra, 2), round(resultado_compra, 2))
+        self.assertEqual(round(resultado_esperado_cuota, 2), round(resultado_cuota, 2))
         self.assertEqual(round(resultado_esperado_intereses, 2), round(resultado_intereses, 2))
 
     # Casos de Error
@@ -97,7 +97,7 @@ class Creditcardtest(unittest.TestCase):
 
         # Verificar que salte el error
         with self.assertRaises(PeriodError):
-            calculate_rate(compra, interes, plazos)
+            calculate_fee(compra, interes, plazos)
 
     def testcreditcardcompra0(self):
         
@@ -108,7 +108,7 @@ class Creditcardtest(unittest.TestCase):
 
         # Verificar que salte el error
         with self.assertRaises(PurchaseError):
-            calculate_rate(compra, interes, plazos)
+            calculate_fee(compra, interes, plazos)
 
     def testcreditcardnegativo(self):
 
@@ -119,7 +119,7 @@ class Creditcardtest(unittest.TestCase):
 
         # Verificar que salte el error
         with self.assertRaises(NegativeError):
-            calculate_rate(compra, interes, plazos)
+            calculate_fee(compra, interes, plazos)
 
 if __name__ == '__main__':
     unittest.main()
