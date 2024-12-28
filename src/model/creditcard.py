@@ -1,7 +1,7 @@
 # Maximun intrest rate allowed
 MAX_INTEREST = 100/12
 
-class ExcesiveInterestException( Exception ): 
+class ExcepcionPorInteresesExcesivos( Exception ): 
     """ 
     Custom exception for interest rates above maximun
 
@@ -18,7 +18,7 @@ class ExcesiveInterestException( Exception ):
         super().__init__( f"Invalid interest rate {interest} maximun allowed is {MAX_INTEREST}" )
 
 
-class InvalidPurchaseException( Exception ): 
+class ExcepcionDeCompraNoValida( Exception ): 
     """ 
     Exepcion personalizada para indicar que el valor de la compra es menor o igual a cero
 
@@ -26,7 +26,7 @@ class InvalidPurchaseException( Exception ):
     def __init__( self ):
         super().__init__( f"Purchase amount must be greater than zero" )
 
-class InvalidumberOfPaymentsException( Exception ): 
+class ExcepcionDeNumeroDePagosNoValido( Exception ): 
     """ 
     Exepcion personalizada para indicar que el nmero de cuotas es menor o igual a cero
 
@@ -35,14 +35,14 @@ class InvalidumberOfPaymentsException( Exception ):
         super().__init__( f"Number of payments must be greater than zero" )
 
 
-class CreditCardCalculator:
+class CalculadoraDeTarjetasDeCredito:
     """
     Class for financial operations for a Credit Card
 
     Clase para realizar operaciones financieras para una tarjeta de crédito
     """
 
-    def calcPayment(amount : float,interest : float, number_of_payments : int):
+    def calcular_pago(amount : float,interest : float, number_of_payments : int):
         """
         Calculates the monthly payment for a purchase amount with a interest rate
         in a number of periods
@@ -76,11 +76,11 @@ class CreditCardCalculator:
         # Para efectos de calcular el rendimiento se guarda la hora actual en esta variable
         execution_time = 0
 
-        CreditCardCalculator.checkInterest(interest)
+        CalculadoraDeTarjetasDeCredito.verificar_intereses(interest)
 
-        CreditCardCalculator.CheckPayments(number_of_payments)
+        CalculadoraDeTarjetasDeCredito.verificar_cuotas(number_of_payments)
 
-        CreditCardCalculator.CheckAmount(amount)
+        CalculadoraDeTarjetasDeCredito.verificar_compra(amount)
 
         if number_of_payments == 1 :
             """ 
@@ -103,15 +103,15 @@ class CreditCardCalculator:
         else:         
             return (amount * i) / (1 - (1 + i) ** (-number_of_payments))
 
-    def CheckAmount(amount):
+    def verificar_compra(amount):
         if amount <= 0 :
-            raise InvalidPurchaseException()
+            raise ExcepcionDeCompraNoValida()
 
-    def CheckPayments(periods):
+    def verificar_cuotas(periods):
         if periods <= 0 :
-            raise InvalidumberOfPaymentsException()
+            raise ExcepcionDeNumeroDePagosNoValido()
 
-    def checkInterest(interest):
+    def verificar_intereses(interest):
         """ 
         Verifica que la tasa de interés no supere la maxima permitida
         """
@@ -119,4 +119,4 @@ class CreditCardCalculator:
             """ 
             If interest rate is above MAX_INTEREST_RATE raises ExcesiveInterestException
             Si la tasa es mayor que MAX_INTEREST_RATE, arroja una excepcion ExcesiveInterestException """
-            raise ExcesiveInterestException( interest )
+            raise ExcepcionPorInteresesExcesivos( interest )

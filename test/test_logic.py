@@ -1,7 +1,8 @@
 import unittest
 import sys
 sys.path.append("src")
-from model.creditcard import CreditCardCalculator, ExcesiveInterestException, InvalidPurchaseException, InvalidumberOfPaymentsException
+from model.creditcard import CalculadoraDeTarjetasDeCredito as Calculadora
+from model.creditcard import ExcepcionDeCompraNoValida, ExcepcionDeNumeroDePagosNoValido, ExcepcionPorInteresesExcesivos
 
 
 class tarjetatest(unittest.TestCase):
@@ -14,15 +15,12 @@ class tarjetatest(unittest.TestCase):
 
         # resultado esperado
         resultado_esperado_cuota = 9297.959116
-        resultado_esperado_intereses = 134726.53
         # proceso
-        resultado_cuota = calculate_fee(compra, interes, plazos)
-        resultado_intereses = calculate_interest(compra, interes, plazos)
+        resultado_cuota = Calculadora.calcular_pago(compra, interes, plazos)
 
         # verificación
 
-        self.assertEqual(round(resultado_esperado_compra, 2), round(resultado_cuota, 2))
-        self.assertEqual(round(resultado_esperado_intereses, 2), round(resultado_intereses, 2))
+        self.assertEqual(round(resultado_esperado_cuota, 2), round(resultado_cuota, 2))
 
     def test_tarjeta_normal2(self):
 
@@ -35,7 +33,7 @@ class tarjetatest(unittest.TestCase):
         resultado_esperado_cuota = 52377.49864
 
         # proceso
-        resultado_cuota = CreditCardCalculator.calcPayment(compra, interes, plazos)
+        resultado_cuota = Calculadora.calcular_pago(compra, interes, plazos)
         # verificación
         self.assertEqual(round(resultado_esperado_cuota, 2), round(resultado_cuota, 2))
 
@@ -52,7 +50,7 @@ class tarjetatest(unittest.TestCase):
         resultado_esperado_cuota = 90000
 
         # proceso
-        resultado_cuota = CreditCardCalculator.calcPayment(compra, interes, plazos)
+        resultado_cuota = Calculadora.calcular_pago(compra, interes, plazos)
 
         # verificación
 
@@ -70,7 +68,7 @@ class tarjetatest(unittest.TestCase):
         resultado_esperado_intereses = 0
 
         # proceso
-        resultado_cuota = CreditCardCalculator.calcPayment(compra, interes, plazos)
+        resultado_cuota = Calculadora.calcular_pago(compra, interes, plazos)
 
         # verificación
 
@@ -87,8 +85,8 @@ class tarjetatest(unittest.TestCase):
         plazos = 60
 
         # Verificar que salte el error
-        with self.assertRaises(ExcesiveInterestException):
-            CreditCardCalculator.calcPayment(compra, interes, plazos)
+        with self.assertRaises(ExcepcionPorInteresesExcesivos):
+            Calculadora.calcular_pago(compra, interes, plazos)
 
     def test_tarjeta_compra_0(self):
         
@@ -98,8 +96,8 @@ class tarjetatest(unittest.TestCase):
         plazos = 60
 
         # Verificar que salte el error
-        with self.assertRaises(InvalidPurchaseException):
-            CreditCardCalculator.calcPayment(compra, interes, plazos)
+        with self.assertRaises(ExcepcionDeCompraNoValida):
+            Calculadora.calcular_pago(compra, interes, plazos)
 
     def test_tarjeta_valor_negativo(self):
 
@@ -109,8 +107,8 @@ class tarjetatest(unittest.TestCase):
         plazos = -10
 
         # Verificar que salte el error
-        with self.assertRaises(InvalidumberOfPaymentsException):
-            CreditCardCalculator.calcPayment(compra, interes, plazos)
+        with self.assertRaises(ExcepcionDeNumeroDePagosNoValido):
+            Calculadora.calcular_pago(compra, interes, plazos)
 
 if __name__ == '__main__':
     unittest.main()
