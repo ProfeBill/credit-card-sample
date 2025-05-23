@@ -47,7 +47,26 @@ class TarjetasController:
         fila = cursor.fetchone()
         resultado = Tarjeta( numero_tarjeta=fila[0], cedula=fila[1], franquicia=fila[2], codigo_banco=fila[3], fecha_vencimiento=fila[4], cupo=fila[5], tasa_interes=fila[6], cuota_manejo=fila[7]  )
         return resultado
+    
+    def BuscarPorCedula( numero_tarjeta ) -> list[Tarjeta]:
+        """ Trae todas las tarjetas asociadas a la cedula de un usuario """
+        cursor = TarjetasController.ObtenerCursor()
 
+        consulta = f"""select numero_tarjeta, cedula, franquicia, codigo_banco, fecha_vencimiento, cupo, tasa_interes, cuota_manejo
+        from tarjetas where cedula = '{numero_tarjeta}'"""
+
+        cursor.execute(consulta )
+        lista = cursor.fetchall()
+        if lista is None or lista.__len__ == 0:
+            return
+
+        resultado = []
+
+        for fila in lista:                
+            tarjeta = Tarjeta( numero_tarjeta=fila[0], cedula=fila[1], franquicia=fila[2], codigo_banco=fila[3], fecha_vencimiento=fila[4], cupo=fila[5], tasa_interes=fila[6], cuota_manejo=fila[7]  )
+            resultado.append(tarjeta)
+            
+        return resultado
 
 
     def ObtenerCursor():
