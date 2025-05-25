@@ -54,8 +54,8 @@ class ControladorUsuarios :
         cursor.execute(f"""select cedula, nombre, apellido, direccion, correo, telefono, codigo_departamento, codigo_municipio
         from usuarios where cedula = '{cedula}'""" )
         fila = cursor.fetchone()
-        resultado = Usuario( cedula=fila[0], nombre=fila[1], apellido=fila[2], direccion=fila[3], correo=fila[4]
-                            telefono=fila[5],codigo_departamento=fila[6], codigo_municipio=fila[7],   )
+        resultado = Usuario(cedula=fila[0], nombre=fila[1], apellido=fila[2], direccion=fila[3], correo=fila[4],
+                            telefono=fila[5],codigo_departamento=fila[6], codigo_municipio=fila[7]   )
         return resultado
 
     def ObtenerCursor():
