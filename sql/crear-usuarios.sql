@@ -1,6 +1,6 @@
 -- Crea la tabla de usuarios
 create table usuarios (
-  cedula varchar( 20 )  NOT NULL,
+  cedula varchar( 20 ) primary key NOT NULL,
   nombre text not null,
   apellido text not null,
   telefono varchar(20),
