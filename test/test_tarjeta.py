@@ -40,7 +40,13 @@ class TestTarjeta( unittest.TestCase ):
         # Verificar si la trajo bien
         self.assertTrue(  tarjeta_buscada.EsIgual( tarjeta )  )
         
-        
+
+    def test_delete_1(self):
+        numero_tarjeta = "111122223334444"
+        TarjetasController.EliminarTarjeta(numero_tarjeta)
+        tarjeta_buscada = TarjetasController.BuscarTarjeta(numero_tarjeta)
+        self.assertIsNone(tarjeta_buscada)
+
 
 if __name__ == '__main__':
     unittest.main()        
