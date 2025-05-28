@@ -49,5 +49,15 @@ def tarjeta_insertada():
         cuota_manejo=float(request.args["cuota_manejo"]))
 
 
+@blueprint.route("/eliminar")
+def eliminar():
+    return render_template("eliminar.html")
+
+@blueprint.route("/tarjeta_eliminada")
+def tarjeta_eliminada():
+    numero_tarjeta = request.args["numero_tarjeta"]
+    TarjetasController.EliminarTarjeta(numero_tarjeta)
+    return render_template('tarjeta_eliminada.html', numero_tarjeta=request.args["numero_tarjeta"] )
+
 if __name__ == "__main__":
     blueprint.run(debug=True)
