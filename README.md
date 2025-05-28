@@ -1,9 +1,6 @@
 # credit-card-sample
 Aplicación ejemplo calculadora de la cuota de tarjeta de crédito
 
-## Estructura MVC
-
-
 ---
 ## ¿Cómo ejecuto la aplicación web?
 - Antes de ejecutar la aplicación, es necesario que se ejecuten las pruebas unitarias para asegurar que este funcione correctamente, además de que estas pruebas crean las tablas de base de datos necesarias para la aplicación.
