@@ -12,6 +12,7 @@ from src.controller.tarjetas_controller import TarjetasController
 
 @blueprint.route("/")
 def hola():
+    TarjetasController.CrearTabla()
     return render_template("index.html")
 
 @blueprint.route('/buscar')
