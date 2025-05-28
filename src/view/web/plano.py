@@ -25,18 +25,28 @@ def lista_tarjetas():
 
 @blueprint.route('/insertar')
 def insertar():
-    tarjeta_insertada = TarjetasController.Insertar(Tarjeta(
-        numero_tarjeta = request.args["numero_tarjeta"],
-        cedula = request.args["cedula"],
-        franquicia = request.args["franquicia"],
-        codigo_banco = request.args["codigo_banco"],
-        fecha_vencimiento = request.args["fecha_vencimiento"],
-        cupo = float(request.args["cupo"]),
-        tasa_interes = float(request.args["tasa_interes"]),
-        cuota_manejo = float(request.args["cuota_manejo"])
+    return render_template('insertar.html')
+
+@blueprint.route('/tarjeta_insertada')
+def tarjeta_insertada():
+    TarjetasController.Insertar(Tarjeta(
+        numero_tarjeta=request.args["numero_tarjeta"],
+        cedula=request.args["cedula"],
+        franquicia=request.args["franquicia"],
+        codigo_banco=request.args["codigo_banco"],
+        fecha_vencimiento=request.args["fecha_vencimiento"],
+        cupo=float(request.args["cupo"]),
+        tasa_interes=float(request.args["tasa_interes"]),
+        cuota_manejo=float(request.args["cuota_manejo"])
     ))
-    
-    return render_template('insertar.html', tarjeta_insertada=tarjeta_insertada)
+    return render_template('tarjeta_insertada.html', numero_tarjeta=request.args["numero_tarjeta"],
+        cedula=request.args["cedula"],
+        franquicia=request.args["franquicia"],
+        codigo_banco=request.args["codigo_banco"],
+        fecha_vencimiento=request.args["fecha_vencimiento"],
+        cupo=float(request.args["cupo"]),
+        tasa_interes=float(request.args["tasa_interes"]),
+        cuota_manejo=float(request.args["cuota_manejo"]))
 
 
 if __name__ == "__main__":
