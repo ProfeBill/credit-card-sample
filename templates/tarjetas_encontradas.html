@@ -1,47 +1,123 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="es">
 <head>
+  <meta charset="UTF-8">
+  <title>Resultados de la Búsqueda</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #e0f7fa, #ffffff);
+      margin: 0;
+      padding: 0;
+      color: #003366;
+    }
 
+    header {
+      background-color: #0288d1;
+      color: white;
+      padding: 20px 0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      margin: 10px 0;
+    }
+
+    nav {
+      background-color: #01579b;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: #ffcc00;
+      color: #000;
+    }
+
+    center p {
+      font-size: 18px;
+      margin: 30px 0 10px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 90%;
+      margin: 20px auto;
+      background-color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      border: 1px solid #cccccc;
+      padding: 10px;
+      text-align: center;
+    }
+
+    thead {
+      background-color: #0288d1;
+      color: white;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f1f9ff;
+    }
+
+    tbody tr:hover {
+      background-color: #ffe082;
+    }
+  </style>
 </head>
+<body>
+  <header>
+    <center><h1>Resultados de la Búsqueda</h1></center>
+  </header>
 
-<body><center>
-    <p>
-        Búsqueda de Tarjetas para el número: {{cedula}}
-    </p>
-    <!-- La etiqueta table se usa para crear tablas en HTML -->
-    <table border="1">
-        <h1>Resultados de la Búsqueda</h1>
-        <!-- El elemento thead describe el area de encabezado en  la tabla -->
-        <thead style="font-weight: bold;">
-            <tr>
-                <td>Número de tarjeta</td>
-                <td>Franquicia</td>
-                <td>Codigo del banco</td>
-                <td>Fecha de vencimiento</td>
-                <td>Cupo</td>
-                <td>Tasa de interés</td>
-                <td>Cuota de manejo</td>
-            </tr>
-        </thead>
+  <nav>
+    <a href="/">Inicio</a>
+    <a href="/buscar">Buscar por cédula</a>
+    <a href="/insertar">Insertar una tarjeta</a>
+  </nav>
 
-        <!-- El elemento tbody describe el cuerpo de la tabla -->
-        <tbody>
+  <center>
+    <p>Búsqueda de Tarjetas para la cédula de número {{cedula}}:</p>
 
-            {% for t in tarjetas %}
-            <tr>
-                <td>{{t.numero_tarjeta}}</td>
-                <td>{{t.franquicia}}</td>
-                <td>{{t.codigo_banco}}</td>
-                <td>{{t.fecha_vencimiento}}</td>
-                <td>{{t.cupo}}</td>
-                <td>{{t.tasa_interes}}</td>
-                <td>{{t.cuota_manejo}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-
+    <table>
+      <thead>
+        <tr>
+          <td>Número de tarjeta</td>
+          <td>Franquicia</td>
+          <td>Código del banco</td>
+          <td>Fecha de vencimiento</td>
+          <td>Cupo</td>
+          <td>Tasa de interés</td>
+          <td>Cuota de manejo</td>
+        </tr>
+      </thead>
+      <tbody>
+        {% for t in tarjetas %}
+        <tr>
+          <td>{{t.numero_tarjeta}}</td>
+          <td>{{t.franquicia}}</td>
+          <td>{{t.codigo_banco}}</td>
+          <td>{{t.fecha_vencimiento}}</td>
+          <td>{{t.cupo}}</td>
+          <td>{{t.tasa_interes}}</td>
+          <td>{{t.cuota_manejo}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
     </table>
-</center></body>
-
+  </center>
+</body>
 </html>
