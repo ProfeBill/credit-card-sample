@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Tarjeta Eliminada</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #e0f7fa, #ffffff);
+      margin: 0;
+      padding: 0;
+      color: #003366;
+    }
+
+    header {
+      background-color: #0288d1;
+      color: white;
+      padding: 20px 0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      margin: 10px 0;
+    }
+
+    nav {
+      background-color: #01579b;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: #ffcc00;
+      color: #000;
+    }
+
+    .mensaje {
+      background-color: #ffffff;
+      margin: 60px auto;
+      padding: 30px 40px;
+      border-radius: 10px;
+      width: 50%;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .mensaje h2 {
+      color: #2e7d32;
+      margin-bottom: 20px;
+    }
+
+    .mensaje p {
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <center><h1>Eliminar Tarjeta</h1></center>
+  </header>
+
+  <nav>
+    <a href="/">Inicio</a>
+    <a href="/buscar">Buscar</a>
+    <a href="/insertar">Insertar</a>
+    <a href="/eliminar">Eliminar tarjeta</a>
+  </nav>
+
+  <div class="mensaje">
+    <h2>¡Tarjeta eliminada exitosamente!</h2>
+    <p>La tarjeta con número <strong>{{numero_tarjeta}}</strong> ha sido removida del sistema.</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Eliminar Tarjeta</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #e0f7fa, #ffffff);
+      margin: 0;
+      padding: 0;
+      color: #003366;
+    }
+
+    header {
+      background-color: #0288d1;
+      color: white;
+      padding: 20px 0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      margin: 10px 0;
+    }
+
+    nav {
+      background-color: #01579b;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: #ffcc00;
+      color: #000;
+    }
+
+    form {
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 10px;
+      margin-top: 40px;
+      width: 50%;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="text"] {
+      padding: 8px;
+      width: 60%;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    input[type="submit"] {
+      background-color: #d32f2f;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #b71c1c;
+    }
+
+    p {
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <center><h1>Eliminar tarjeta</h1></center>
+  </header>
+  <nav>
+      <a href="/">Inicio</a>
+      <a href="/buscar">Buscar por cédula</a>
+      <a href="/insertar">Insertar una tarjeta</a>
+    </nav>
+    
+    <form action="/tarjeta_eliminada">
+  <center>
+    <form action="/tarjeta_eliminada" method="post">
+      <p>Ingrese el número de la tarjeta que desea eliminar:</p>
+      <div>
+        Número de tarjeta a eliminar: <input type="text" name="numero_tarjeta" required />
+      </div>
+      <input type="submit" value="Eliminar" />
+    </form>
+  </center>
+</body>
+</html>
