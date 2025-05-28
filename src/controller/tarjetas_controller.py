@@ -38,15 +38,17 @@ class TarjetasController:
 
         cursor.connection.commit()
 
-    def BuscarTarjeta( numero_tarjeta ) -> Tarjeta:
-        """ Trae una tarjeta dado su numero """
+    def BuscarTarjeta(numero_tarjeta) -> Tarjeta:
         cursor = TarjetasController.ObtenerCursor()
-
-        cursor.execute(f"""select numero_tarjeta, cedula, franquicia, codigo_banco, fecha_vencimiento, cupo, tasa_interes, cuota_manejo
-        from tarjetas where numero_tarjeta = '{numero_tarjeta}'""" )
+        cursor.execute(f"""SELECT numero_tarjeta, cedula, franquicia, codigo_banco, fecha_vencimiento, cupo, tasa_interes, cuota_manejo
+                           FROM tarjetas WHERE numero_tarjeta = '{numero_tarjeta}'""")
         fila = cursor.fetchone()
-        resultado = Tarjeta( numero_tarjeta=fila[0], cedula=fila[1], franquicia=fila[2], codigo_banco=fila[3], fecha_vencimiento=fila[4], cupo=fila[5], tasa_interes=fila[6], cuota_manejo=fila[7]  )
-        return resultado
+        if not fila:
+            return None
+        return Tarjeta(numero_tarjeta=fila[0], cedula=fila[1], franquicia=fila[2],
+                       codigo_banco=fila[3], fecha_vencimiento=fila[4], cupo=fila[5],
+                       tasa_interes=fila[6], cuota_manejo=fila[7])
+    
     
     def BuscarPorCedula( numero_tarjeta ) -> list[Tarjeta]:
         """ Trae todas las tarjetas asociadas a la cedula de un usuario """
@@ -67,6 +69,13 @@ class TarjetasController:
             resultado.append(tarjeta)
             
         return resultado
+    
+    def EliminarTarjeta(numero_tarjeta):
+        """ Elimina una tarjeta dado su numero """
+        cursor = TarjetasController.ObtenerCursor()
+        cursor.execute(f"""DELETE FROM tarjetas WHERE numero_tarjeta = '{numero_tarjeta}'""")
+        cursor.connection.commit() 
+
 
 
     def ObtenerCursor():
