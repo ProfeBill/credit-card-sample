@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request
 
+
 blueprint = Blueprint( "plano", __name__, "templates" )
 
 import sys
